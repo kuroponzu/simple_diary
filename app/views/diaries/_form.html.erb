@@ -1,0 +1,28 @@
+<%= form_with(model: diary, local: true) do |form| %>
+  <% if diary.errors.any? %>
+    <div style="color: red; margin-bottom: 20px;">
+      <h2><%= pluralize(diary.errors.count, "error") %> prohibited this diary from being saved:</h2>
+      <ul>
+        <% diary.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="margin-bottom: 20px;">
+    <%= form.label :title, style: "display: block; margin-bottom: 5px; font-weight: bold;" %>
+    <%= form.text_field :title, style: "width: 100%; padding: 10px; font-size: 1em; border: 1px solid #ddd; border-radius: 5px;" %>
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <%= form.label :content, style: "display: block; margin-bottom: 5px; font-weight: bold;" %>
+    <%= form.text_area :content, rows: 15, style: "width: 100%; padding: 10px; font-size: 1em; border: 1px solid #ddd; border-radius: 5px; font-family: monospace;" %>
+    <p style="color: #666; font-size: 0.9em; margin-top: 5px;">You can use Markdown formatting</p>
+  </div>
+
+  <div>
+    <%= form.submit style: "padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1em;" %>
+    <%= link_to "Cancel", diaries_path, style: "padding: 10px 20px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 5px; margin-left: 10px;" %>
+  </div>
+<% end %>

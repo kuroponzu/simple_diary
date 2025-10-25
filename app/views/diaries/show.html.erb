@@ -1,0 +1,23 @@
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+  <div style="margin-bottom: 20px;">
+    <%= link_to "← Back to List", diaries_path %>
+  </div>
+
+  <h1><%= @diary.title %></h1>
+
+  <p style="color: #666; font-size: 0.9em;">
+    Created: <%= @diary.created_at.strftime("%Y-%m-%d %H:%M") %>
+    <% if @diary.updated_at != @diary.created_at %>
+      | Updated: <%= @diary.updated_at.strftime("%Y-%m-%d %H:%M") %>
+    <% end %>
+  </p>
+
+  <div style="border: 1px solid #ddd; padding: 20px; margin: 20px 0; border-radius: 5px; background-color: #f9f9f9;">
+    <%= markdown(@diary.content) %>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <%= link_to "Edit", edit_diary_path(@diary), style: "padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-right: 10px;" %>
+    <%= link_to "Delete", diary_path(@diary), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "padding: 10px 20px; background-color: #dc3545; color: white; text-decoration: none; border-radius: 5px;" %>
+  </div>
+</div>

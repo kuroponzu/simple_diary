@@ -1,0 +1,9 @@
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+  <div style="margin-bottom: 20px;">
+    <%= link_to "← Back to Diary", diary_path(@diary) %>
+  </div>
+
+  <h1>Edit Diary</h1>
+
+  <%= render "form", diary: @diary %>
+</div>
