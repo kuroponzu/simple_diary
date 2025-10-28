@@ -43,6 +43,9 @@ gem "image_processing", "~> 1.2"
 # Authentication
 gem "devise"
 
+# Passkey/WebAuthn support
+gem "webauthn"
+
 # Markdown support
 gem "redcarpet"
 

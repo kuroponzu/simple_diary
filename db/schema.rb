@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_25_143745) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_28_143441) do
+  create_table "credentials", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "external_id", null: false
+    t.string "nickname"
+    t.text "public_key", null: false
+    t.integer "sign_count", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["external_id"], name: "index_credentials_on_external_id", unique: true
+    t.index ["user_id"], name: "index_credentials_on_user_id"
+  end
+
   create_table "diaries", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
@@ -32,5 +44,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_25_143745) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "credentials", "users"
   add_foreign_key "diaries", "users"
 end
